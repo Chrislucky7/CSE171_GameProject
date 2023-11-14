@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnlbt8c22sguv"]
+
+[ext_resource type="PackedScene" uid="uid://bnrlget7ncala" path="res://Character/Enemy/enemy.tscn" id="1_mhia7"]
+[ext_resource type="Script" path="res://Character/Enemy/Flying Enemy/FlyingEnemy.gd" id="1_yg8wl"]
+
+[node name="FlyingEnemy" instance=ExtResource("1_mhia7")]
+
+[node name="CharacterBody2D" parent="." index="0"]
+script = ExtResource("1_yg8wl")
+
+[node name="AnimatedSprite2D" parent="CharacterBody2D" index="0"]
+self_modulate = Color(1, 0, 0, 1)
+
+[connection signal="body_entered" from="CharacterBody2D/DetectPlayer" to="CharacterBody2D" method="_on_detect_player_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/DetectPlayer" to="CharacterBody2D" method="_on_detect_player_body_exited"]
