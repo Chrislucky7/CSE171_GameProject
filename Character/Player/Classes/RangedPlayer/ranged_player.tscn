@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjxn3n1i3jyfm"]
+[gd_scene load_steps=6 format=3 uid="uid://bjxn3n1i3jyfm"]
 
 [ext_resource type="PackedScene" uid="uid://vqfx17hay0mi" path="res://Character/Player/player.tscn" id="1_i20v4"]
 [ext_resource type="Script" path="res://Character/Player/Classes/RangedPlayer/RangedPlayer.gd" id="2_2gf6j"]
-[ext_resource type="Script" path="res://Character/Player/Classes/RangedPlayer/healthBar.gd" id="3_7qvfa"]
+[ext_resource type="Texture2D" uid="uid://bxqgrdc2ps1oh" path="res://Character/Player/Classes/RangedPlayer/Sprites/projectile3-2.png" id="3_1ordy"]
+[ext_resource type="Texture2D" uid="uid://baqd8tuta34xc" path="res://Character/Player/Classes/RangedPlayer/Sprites/projectile3-3.png" id="4_ij66q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4183p"]
 radius = 61.0
 height = 146.0
 
 [node name="RangedPlayer" instance=ExtResource("1_i20v4")]
-position = Vector2(2, -3)
+position = Vector2(-23, -11)
 
 [node name="CharacterBody2D" parent="." index="0" groups=["Player"]]
 script = ExtResource("2_2gf6j")
@@ -35,15 +36,32 @@ shape = SubResource("CapsuleShape2D_4183p")
 [node name="UI" type="CanvasLayer" parent="." index="5"]
 
 [node name="healthBar" type="ProgressBar" parent="UI" index="0"]
+unique_name_in_owner = true
 modulate = Color(0.0941176, 0.741176, 0.0588235, 1)
 offset_left = 38.0
 offset_top = 41.0
 offset_right = 575.0
 offset_bottom = 89.0
 show_percentage = false
-script = ExtResource("3_7qvfa")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI" index="1"]
+[node name="ReloadProgress" type="TextureProgressBar" parent="UI" index="1"]
+unique_name_in_owner = true
+offset_left = 905.0
+offset_top = 45.0
+offset_right = 945.0
+offset_bottom = 51.0
+scale = Vector2(5, 5)
+step = 0.1
+value = 1.0
+texture_under = ExtResource("3_1ordy")
+texture_progress = ExtResource("4_ij66q")
+
+[node name="reloadTimer" type="Timer" parent="UI/ReloadProgress" index="0"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[node name="MarginContainer" type="MarginContainer" parent="UI" index="2"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -62,10 +80,6 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-layout_mode = 2
-text = "Buff"
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="UI/MarginContainer" index="1"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -81,3 +95,4 @@ text = "Skills"
 [connection signal="body_entered" from="CharacterBody2D/player_hitbox" to="CharacterBody2D" method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/player_hitbox" to="CharacterBody2D" method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/attack_cooldown" to="CharacterBody2D" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="UI/ReloadProgress/reloadTimer" to="CharacterBody2D" method="_on_reload_timer_timeout"]
