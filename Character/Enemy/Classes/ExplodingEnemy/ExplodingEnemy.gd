@@ -28,7 +28,6 @@ func _physics_process(delta):
 	# Enemy moves towards player when detected
 	if player && detect_inner == false && entered == false:
 		change_state(STATES.RUN)
-		print(global_position.direction_to(player.global_position).normalized())
 		if global_position.direction_to(player.global_position).x < 0:
 			$AnimatedSprite2D.flip_h = true
 		else:

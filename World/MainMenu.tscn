@@ -1,0 +1,94 @@
+[gd_scene load_steps=4 format=3 uid="uid://la328vs5r0a"]
+
+[ext_resource type="Texture2D" uid="uid://dmo5d5tihpywt" path="res://World/Background.png" id="1_uvr2v"]
+
+[sub_resource type="FontFile" id="FontFile_60i17"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/36/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/60/0 = Vector2(0, 0)
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/24/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/36/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/24/0/kerning_overrides/60/0 = Vector2(0, 0)
+cache/0/36/0/ascent = 0.0
+cache/0/36/0/descent = 0.0
+cache/0/36/0/underline_position = 0.0
+cache/0/36/0/underline_thickness = 0.0
+cache/0/36/0/scale = 1.0
+cache/0/36/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/36/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/36/0/kerning_overrides/36/0 = Vector2(0, 0)
+cache/0/36/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/36/0/kerning_overrides/60/0 = Vector2(0, 0)
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/48/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/36/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/48/0/kerning_overrides/60/0 = Vector2(0, 0)
+cache/0/60/0/ascent = 0.0
+cache/0/60/0/descent = 0.0
+cache/0/60/0/underline_position = 0.0
+cache/0/60/0/underline_thickness = 0.0
+cache/0/60/0/scale = 1.0
+cache/0/60/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/60/0/kerning_overrides/24/0 = Vector2(0, 0)
+cache/0/60/0/kerning_overrides/36/0 = Vector2(0, 0)
+cache/0/60/0/kerning_overrides/48/0 = Vector2(0, 0)
+cache/0/60/0/kerning_overrides/60/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="Theme_mf8ko"]
+default_font = SubResource("FontFile_60i17")
+default_font_size = 60
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = -632.0
+offset_top = -1923.0
+offset_right = 2434.0
+offset_bottom = 2710.0
+texture = ExtResource("1_uvr2v")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -230.0
+offset_right = 177.0
+offset_bottom = -143.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_mf8ko")
+text = "Sen's Fortress"
+fit_content = true
+scroll_active = false
