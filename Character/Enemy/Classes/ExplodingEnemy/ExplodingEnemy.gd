@@ -53,9 +53,9 @@ func _on_detect_player_body_entered(body):
 
 func _on_detect_player_body_exited(body):
 	if body.is_in_group("Player"):
-		player = null
 		velocity = Vector2(0,0)
 		change_state(STATES.IDLE)
+		player
 
 func _on_detect_inner_body_entered(body):
 	if body.is_in_group("Player"):
@@ -66,4 +66,4 @@ func _on_detect_inner_body_entered(body):
 func _on_detect_inner_body_exited(body):
 	if body.is_in_group("Player"):
 		detect_inner = false
-		player_inner = null
+		player_inner

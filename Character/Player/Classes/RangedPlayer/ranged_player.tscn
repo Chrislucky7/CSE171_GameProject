@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://vqfx17hay0mi" path="res://Character/Player/player.tscn" id="1_i20v4"]
 [ext_resource type="Script" path="res://Character/Player/Classes/RangedPlayer/RangedPlayer.gd" id="2_2gf6j"]
-[ext_resource type="Texture2D" uid="uid://bxqgrdc2ps1oh" path="res://Character/Player/Classes/RangedPlayer/Sprites/projectile3-2.png" id="3_1ordy"]
 [ext_resource type="Shader" path="res://Character/character.gdshader" id="3_vf1lj"]
-[ext_resource type="Texture2D" uid="uid://baqd8tuta34xc" path="res://Character/Player/Classes/RangedPlayer/Sprites/projectile3-3.png" id="4_ij66q"]
+[ext_resource type="Texture2D" uid="uid://bpabcgdcaklk0" path="res://Character/Player/Classes/RangedPlayer/Sprites/blastunder.png" id="4_unued"]
+[ext_resource type="Texture2D" uid="uid://ffypxeam8lbb" path="res://Character/Player/Classes/RangedPlayer/Sprites/blast.png" id="5_unrl3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ifd8"]
 shader = ExtResource("3_vf1lj")
@@ -95,15 +95,15 @@ show_percentage = false
 
 [node name="ReloadProgress" type="TextureProgressBar" parent="UI" index="1"]
 unique_name_in_owner = true
-offset_left = 905.0
-offset_top = 45.0
-offset_right = 945.0
-offset_bottom = 51.0
-scale = Vector2(5, 5)
+offset_left = 829.0
+offset_top = -15.0
+offset_right = 1575.0
+offset_bottom = 405.0
+scale = Vector2(0.4, 0.4)
 step = 0.1
 value = 1.0
-texture_under = ExtResource("3_1ordy")
-texture_progress = ExtResource("4_ij66q")
+texture_under = ExtResource("4_unued")
+texture_progress = ExtResource("5_unrl3")
 
 [node name="reloadTimer" type="Timer" parent="UI/ReloadProgress" index="0"]
 unique_name_in_owner = true
