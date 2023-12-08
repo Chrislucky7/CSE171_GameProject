@@ -26,26 +26,26 @@ func _physics_process(delta):
 			$enemy_hitbox/CollisionShape2D.position = Vector2(91.25, -27.25)
 		velocity.x = global_position.direction_to(player.global_position).x * speed
 		move_and_slide()
-	if(attackPlayer and player):
-		change_state(STATES.ATTACK)
+		if(attackPlayer):
+			change_state(STATES.ATTACK)
+	else:
+		change_state(STATES.IDLE)
 	
 	velocity.y += gravity * delta
 	update_health()
-	
-		
+
 func enemy():
 	pass
 	
 func _on_detect_player_body_entered(body):
-	seePlayer = true
-	player = body
-	
-
+	if body.has_method("player"):
+		seePlayer = true
+		player = body
 
 func _on_detect_player_body_exited(body):
-	seePlayer = false
-	player
-	
+	if body.has_method("player"):
+		seePlayer = false
+		player
 	
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("player"):

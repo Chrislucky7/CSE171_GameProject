@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cnlbt8c22sguv"]
+[gd_scene load_steps=23 format=3 uid="uid://cnlbt8c22sguv"]
 
 [ext_resource type="PackedScene" uid="uid://bnrlget7ncala" path="res://Character/Enemy/enemy.tscn" id="1_oxvfy"]
 [ext_resource type="Script" path="res://Character/Enemy/Classes/FlyingEnemy/FlyingEnemy.gd" id="2_ue4it"]
@@ -130,6 +130,9 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eu3xp"]
+size = Vector2(63, 69)
+
 [node name="FlyingEnemy" instance=ExtResource("1_oxvfy")]
 
 [node name="CharacterBody2D" parent="." index="0"]
@@ -139,14 +142,21 @@ script = ExtResource("2_ue4it")
 self_modulate = Color(1, 0, 0, 1)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_715mv")
-animation = &"fly"
-frame_progress = 0.667721
+animation = &"attack"
 
 [node name="CollisionShape2D" parent="CharacterBody2D" index="1"]
-position = Vector2(6, -8.25)
+position = Vector2(5, -5)
 
 [node name="DetectPlayer" parent="CharacterBody2D" index="2"]
 visible = true
 
+[node name="enemy_hitbox" type="Area2D" parent="CharacterBody2D" index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/enemy_hitbox" index="0"]
+position = Vector2(31.5, 10)
+shape = SubResource("RectangleShape2D_eu3xp")
+
 [connection signal="body_entered" from="CharacterBody2D/DetectPlayer" to="CharacterBody2D" method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/DetectPlayer" to="CharacterBody2D" method="_on_detect_player_body_exited"]
+[connection signal="body_entered" from="CharacterBody2D/enemy_hitbox" to="CharacterBody2D" method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/enemy_hitbox" to="CharacterBody2D" method="_on_enemy_hitbox_body_exited"]

@@ -210,4 +210,4 @@ position = Vector2(-24, -260)
 position = Vector2(-419, -1686)
 
 [node name="RangedPlayer" parent="." instance=ExtResource("23_hgumq")]
-position = Vector2(-19, -1718)
+position = Vector2(-213, 548)
