@@ -132,6 +132,7 @@ metadata/_edit_group_ = true
 script = ExtResource("2_xsekv")
 
 [node name="AnimatedSprite2D" parent="CharacterBody2D" index="0"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_eojfo")
 animation = &"idle"
 

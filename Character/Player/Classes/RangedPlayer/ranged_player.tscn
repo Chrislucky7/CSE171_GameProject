@@ -1,9 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjxn3n1i3jyfm"]
+[gd_scene load_steps=11 format=3 uid="uid://bjxn3n1i3jyfm"]
 
 [ext_resource type="PackedScene" uid="uid://vqfx17hay0mi" path="res://Character/Player/player.tscn" id="1_i20v4"]
 [ext_resource type="Script" path="res://Character/Player/Classes/RangedPlayer/RangedPlayer.gd" id="2_2gf6j"]
 [ext_resource type="Texture2D" uid="uid://bxqgrdc2ps1oh" path="res://Character/Player/Classes/RangedPlayer/Sprites/projectile3-2.png" id="3_1ordy"]
+[ext_resource type="Shader" path="res://Character/character.gdshader" id="3_vf1lj"]
 [ext_resource type="Texture2D" uid="uid://baqd8tuta34xc" path="res://Character/Player/Classes/RangedPlayer/Sprites/projectile3-3.png" id="4_ij66q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ifd8"]
+shader = ExtResource("3_vf1lj")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/flashState = 0.0
+
+[sub_resource type="Animation" id="Animation_tihiw"]
+resource_name = "flash_damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flashState")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wnqop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flashState")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sllhu"]
+_data = {
+"RESET": SubResource("Animation_wnqop"),
+"flash_damage": SubResource("Animation_tihiw")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4183p"]
 radius = 61.0
@@ -13,11 +55,17 @@ height = 146.0
 position = Vector2(-23, -11)
 
 [node name="CharacterBody2D" parent="." index="0" groups=["Player"]]
+texture_filter = 0
 script = ExtResource("2_2gf6j")
 metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" parent="CharacterBody2D" index="0"]
-animation = &"fall"
+material = SubResource("ShaderMaterial_7ifd8")
+
+[node name="AnimationPlayer" parent="CharacterBody2D/AnimatedSprite2D" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_sllhu")
+}
 
 [node name="CollisionShape2D" parent="CharacterBody2D" index="1"]
 metadata/_edit_lock_ = true

@@ -2,8 +2,6 @@ extends "res://Character/Character.gd"
 
 class_name Enemy
 
-
-
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"

@@ -11,6 +11,7 @@ var FRICTION = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var HP = 100
+var knockback = 1000
 
 
 enum STATES {IDLE, RUN, ATTACK, STAGGER, DEAD}
@@ -29,6 +30,7 @@ func change_state(new_state):
 
 func take_damage(damage):
 	HP -= damage
+	$AnimatedSprite2D/AnimationPlayer.play("flash_damage")
 	if HP <= 0:
 		change_state(STATES.DEAD)
 	else:

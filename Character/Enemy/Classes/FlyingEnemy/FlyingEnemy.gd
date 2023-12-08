@@ -11,6 +11,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	match current_state:
+		STATES.IDLE:
+			$AnimatedSprite2D.play("fly")
+	
 	if(seePlayer):
 		velocity = global_position.direction_to(player.global_position) * SPEED
 		move_and_slide()

@@ -1,7 +1,134 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnlbt8c22sguv"]
+[gd_scene load_steps=22 format=3 uid="uid://cnlbt8c22sguv"]
 
 [ext_resource type="PackedScene" uid="uid://bnrlget7ncala" path="res://Character/Enemy/enemy.tscn" id="1_oxvfy"]
 [ext_resource type="Script" path="res://Character/Enemy/Classes/FlyingEnemy/FlyingEnemy.gd" id="2_ue4it"]
+[ext_resource type="Texture2D" uid="uid://bdqjnsltpaa6c" path="res://Character/Enemy/Classes/FlyingEnemy/Sprites/Attack.png" id="3_8jrqv"]
+[ext_resource type="Texture2D" uid="uid://ccele4qt65y3x" path="res://Character/Enemy/Classes/FlyingEnemy/Sprites/Flight.png" id="4_gxlny"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0oupn"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(50, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxy7j"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(200, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lamvv"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(350, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fekma"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(500, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7m0c"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(650, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r5i0"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(800, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hy4gh"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(950, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yyan"]
+atlas = ExtResource("3_8jrqv")
+region = Rect2(1100, 50, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fune"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(50, 52, 50, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhxjd"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(200, 52, 50, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s3v1n"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(350, 52, 50, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ns6m"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(500, 52, 50, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol0rd"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(650, 52, 50, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlyej"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(800, 52, 50, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp0g7"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(950, 52, 50, 52)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5k53"]
+atlas = ExtResource("4_gxlny")
+region = Rect2(1100, 52, 50, 52)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_715mv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0oupn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxy7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lamvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fekma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7m0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r5i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hy4gh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yyan")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fune")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhxjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s3v1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ns6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol0rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlyej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp0g7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5k53")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}]
 
 [node name="FlyingEnemy" instance=ExtResource("1_oxvfy")]
 
@@ -10,6 +137,13 @@ script = ExtResource("2_ue4it")
 
 [node name="AnimatedSprite2D" parent="CharacterBody2D" index="0"]
 self_modulate = Color(1, 0, 0, 1)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_715mv")
+animation = &"fly"
+frame_progress = 0.667721
+
+[node name="CollisionShape2D" parent="CharacterBody2D" index="1"]
+position = Vector2(6, -8.25)
 
 [node name="DetectPlayer" parent="CharacterBody2D" index="2"]
 visible = true
