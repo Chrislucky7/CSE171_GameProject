@@ -2,25 +2,9 @@
 
 [ext_resource type="Script" path="res://Character/Enemy/Classes/MeleeEnemy/MeleeEnemy.gd" id="1_1nx5u"]
 [ext_resource type="PackedScene" uid="uid://bnrlget7ncala" path="res://Character/Enemy/enemy.tscn" id="1_5ysnw"]
-[ext_resource type="Texture2D" path="res://Character/Enemy/Classes/MeleeEnemy/Sprites/Idle.png" id="3_2ntlj"]
-[ext_resource type="Texture2D" path="res://Character/Enemy/Classes/MeleeEnemy/Sprites/Attack.png" id="4_mttbd"]
-[ext_resource type="Texture2D" path="res://Character/Enemy/Classes/MeleeEnemy/Sprites/Walk.png" id="5_h5nk0"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q5np4"]
-atlas = ExtResource("3_2ntlj")
-region = Rect2(57, 44, 50, 63)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nkstn"]
-atlas = ExtResource("3_2ntlj")
-region = Rect2(207, 44, 50, 63)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_naqgd"]
-atlas = ExtResource("3_2ntlj")
-region = Rect2(357, 44, 50, 63)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tyfpq"]
-atlas = ExtResource("3_2ntlj")
-region = Rect2(507, 44, 50, 63)
+[ext_resource type="Texture2D" uid="uid://xa0mvw3mgtt4" path="res://Character/Enemy/Classes/MeleeEnemy/Sprites/Idle.png" id="3_2ntlj"]
+[ext_resource type="Texture2D" uid="uid://gd1v4c2ykkgu" path="res://Character/Enemy/Classes/MeleeEnemy/Sprites/Attack.png" id="4_mttbd"]
+[ext_resource type="Texture2D" uid="uid://cy40wyya6nco8" path="res://Character/Enemy/Classes/MeleeEnemy/Sprites/Walk.png" id="5_h5nk0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_spcn7"]
 atlas = ExtResource("4_mttbd")
@@ -54,6 +38,22 @@ region = Rect2(900, 37, 150, 82)
 atlas = ExtResource("4_mttbd")
 region = Rect2(1050, 37, 150, 82)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5np4"]
+atlas = ExtResource("3_2ntlj")
+region = Rect2(57, 44, 50, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkstn"]
+atlas = ExtResource("3_2ntlj")
+region = Rect2(207, 44, 50, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_naqgd"]
+atlas = ExtResource("3_2ntlj")
+region = Rect2(357, 44, 50, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyfpq"]
+atlas = ExtResource("3_2ntlj")
+region = Rect2(507, 44, 50, 63)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3idjc"]
 atlas = ExtResource("5_h5nk0")
 region = Rect2(48, 46, 74, 61)
@@ -72,23 +72,6 @@ region = Rect2(492, 46, 74, 61)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2r0q2"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q5np4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nkstn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_naqgd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tyfpq")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 4.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_spcn7")
@@ -115,8 +98,25 @@ animations = [{
 "texture": SubResource("AtlasTexture_oqf1v")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"attack",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5np4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkstn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_naqgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyfpq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -137,13 +137,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfv3b"]
-size = Vector2(889.5, 181)
+size = Vector2(889.5, 286.75)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_32chf"]
-radius = 60.0
-height = 188.5
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cchnn"]
+size = Vector2(119.5, 185)
 
 [node name="meleeEnemy" instance=ExtResource("1_5ysnw")]
+scale = Vector2(0.8, 0.8)
 
 [node name="CharacterBody2D" parent="." index="0"]
 script = ExtResource("1_1nx5u")
@@ -151,24 +151,33 @@ script = ExtResource("1_1nx5u")
 [node name="AnimatedSprite2D" parent="CharacterBody2D" index="0"]
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_2r0q2")
-animation = &"new_animation"
-frame_progress = 0.628895
+animation = &"attack"
+frame_progress = 0.467644
 
 [node name="CollisionShape2D" parent="CharacterBody2D" index="1"]
-visible = false
-position = Vector2(-0.5, 0)
+position = Vector2(-0.5, -0.249998)
+scale = Vector2(1, 1)
+
+[node name="DetectPlayer" parent="CharacterBody2D" index="2"]
+visible = true
 
 [node name="CollisionShape2D" parent="CharacterBody2D/DetectPlayer" index="0"]
-position = Vector2(3, 4)
+position = Vector2(0, -52.875)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_wfv3b")
 
 [node name="enemy_hitbox" type="Area2D" parent="CharacterBody2D" index="3"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/enemy_hitbox" index="0"]
-position = Vector2(1.25, 0)
+position = Vector2(91.25, -27.25)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_32chf")
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_cchnn")
+
+[node name="healthbar" parent="CharacterBody2D" index="4"]
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="CharacterBody2D/DetectPlayer" to="CharacterBody2D" method="_on_detect_player_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/DetectPlayer" to="CharacterBody2D" method="_on_detect_player_body_exited"]
+[connection signal="body_entered" from="CharacterBody2D/enemy_hitbox" to="CharacterBody2D" method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/enemy_hitbox" to="CharacterBody2D" method="_on_enemy_hitbox_body_exited"]

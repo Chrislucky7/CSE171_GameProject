@@ -57,6 +57,9 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="Animation" id="Animation_srlfi"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_hedak"]
 resource_name = "flash_damage"
 tracks/0/type = "value"
@@ -71,9 +74,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [1.0, 0.0, 1.0, 0.0]
 }
-
-[sub_resource type="Animation" id="Animation_srlfi"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mcysv"]
 _data = {

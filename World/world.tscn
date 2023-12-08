@@ -207,7 +207,7 @@ position = Vector2(192, 832)
 position = Vector2(-24, -260)
 
 [node name="meleeEnemy" parent="." instance=ExtResource("23_kusnv")]
-position = Vector2(-442, -1704)
+position = Vector2(-419, -1686)
 
 [node name="RangedPlayer" parent="." instance=ExtResource("23_hgumq")]
 position = Vector2(-19, -1718)
