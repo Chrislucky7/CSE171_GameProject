@@ -155,7 +155,8 @@ animation = &"attack"
 frame_progress = 0.467644
 
 [node name="CollisionShape2D" parent="CharacterBody2D" index="1"]
-position = Vector2(-0.5, 14.5)
+position = Vector2(15, -7.5)
+scale = Vector2(1, 1)
 
 [node name="DetectPlayer" parent="CharacterBody2D" index="2"]
 visible = true

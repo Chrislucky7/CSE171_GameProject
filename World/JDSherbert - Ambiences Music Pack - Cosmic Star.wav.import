@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cypx4dfuiqoqd"
+path="res://.godot/imported/JDSherbert - Ambiences Music Pack - Cosmic Star.wav-184df84bf7d7cb0d31e3b4fba70e2eb3.sample"
+
+[deps]
+
+source_file="res://World/JDSherbert - Ambiences Music Pack - Cosmic Star.wav"
+dest_files=["res://.godot/imported/JDSherbert - Ambiences Music Pack - Cosmic Star.wav-184df84bf7d7cb0d31e3b4fba70e2eb3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

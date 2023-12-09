@@ -153,10 +153,12 @@ position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_yi7op")
 
 [node name="DetectInner" type="Area2D" parent="CharacterBody2D" index="2"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/DetectInner" index="0"]
 shape = SubResource("CircleShape2D_dursr")
+
+[node name="DetectPlayer" parent="CharacterBody2D" index="3"]
+visible = true
 
 [node name="CollisionShape2D" parent="CharacterBody2D/DetectPlayer" index="0"]
 position = Vector2(0, -16)

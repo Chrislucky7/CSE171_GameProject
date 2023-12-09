@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b6i04dqcq5y28"]
+
+[ext_resource type="FontFile" uid="uid://chmtr77cmc6nb" path="res://World/DungeonFont.ttf" id="1_8wpsl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ka3fb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuoja"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[resource]
+default_font = ExtResource("1_8wpsl")
+default_font_size = 72
+Button/colors/font_hover_color = Color(0.94902, 0.941176, 0, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_ka3fb")
+Button/styles/hover = SubResource("StyleBoxFlat_uuoja")
+Button/styles/normal = SubResource("StyleBoxFlat_ka3fb")
+Button/styles/pressed = SubResource("StyleBoxFlat_ka3fb")
+Fonts/fonts/normal = ExtResource("1_8wpsl")
+Label/font_sizes/font_size = 120

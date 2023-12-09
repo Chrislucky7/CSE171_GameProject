@@ -139,6 +139,7 @@ animation = &"idle"
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D" index="2"]
 offset = Vector2(0, -150)
 limit_left = -625
+limit_top = -2125
 limit_right = 625
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0

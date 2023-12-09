@@ -60,6 +60,9 @@ func _physics_process(delta):
 			skill_count = 0
 			duration_count = 0
 			skill_active = false
+	
+	if HP <= 0:
+		get_tree().change_scene_to_file("res://World/game_over.tscn")
 
 # Makes instance of projectile in the world scene
 func shoot():
@@ -106,8 +109,7 @@ func update_health():
 func update_reloadprogress():
 	if reload_timer.get_time_left() > 0:
 		percentage_of_time = (
-			(1-reload_timer.get_time_left()/ reload_timer.get_wait_time()) * 100
-		)
+			(1-reload_timer.get_time_left()/ reload_timer.get_wait_time()) * 100)
 		
 		reload_progress.value = percentage_of_time
 
