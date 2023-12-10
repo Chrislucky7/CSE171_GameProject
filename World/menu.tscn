@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://beoy88fs25e1k"]
+[gd_scene load_steps=5 format=3 uid="uid://beoy88fs25e1k"]
 
 [ext_resource type="Theme" uid="uid://b6i04dqcq5y28" path="res://World/theme.tres" id="1_ns0nm"]
 [ext_resource type="Texture2D" uid="uid://dmo5d5tihpywt" path="res://World/Background.png" id="2_1v8xm"]
 [ext_resource type="Script" path="res://World/menu.gd" id="2_ricav"]
+[ext_resource type="FontFile" uid="uid://3hn75j8soxga" path="res://World/m5x7.ttf" id="4_xuojm"]
 
 [node name="Menu" type="Control"]
 texture_filter = 1
@@ -62,6 +63,30 @@ offset_bottom = 264.0
 grow_horizontal = 2
 text = "Sen's Fortress"
 horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1140.0
+offset_top = -122.0
+offset_right = -837.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xuojm")
+theme_override_font_sizes/font_size = 32
+text = "-CONTROLS-
+Arrow keys: Movement
+Z: Shoot
+X: Special"
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
