@@ -110,6 +110,11 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
+[node name="fastreloadtimer" type="Timer" parent="UI/ReloadProgress" index="1"]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
 [node name="SkillProgress" type="TextureProgressBar" parent="UI" index="2"]
 unique_name_in_owner = true
 offset_left = 38.0
@@ -130,4 +135,5 @@ one_shot = true
 [connection signal="body_exited" from="CharacterBody2D/player_hitbox" to="CharacterBody2D" method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/attack_cooldown" to="CharacterBody2D" method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="UI/ReloadProgress/reloadTimer" to="CharacterBody2D" method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="UI/ReloadProgress/fastreloadtimer" to="CharacterBody2D" method="_on_fastreloadtimer_timeout"]
 [connection signal="timeout" from="UI/SkillProgress/skillTimer" to="CharacterBody2D" method="_on_skill_timer_timeout"]

@@ -9,6 +9,8 @@ var enemy_attack_cooldown = true
 
 @onready var reload_progress = %ReloadProgress
 @onready var reload_timer = %reloadTimer
+@onready var fastreloadtimer = %fastreloadtimer
+
 @onready var percentage_of_time_reload
 
 @onready var skill_progress = %SkillProgress
@@ -80,8 +82,12 @@ func shoot():
 	owner.add_child(projectile_instance)
 	projectile_instance.global_transform = $Marker2D.get_global_transform()
 	projectile_instance.get_node("Area2D").set_look_direction(look_direction)
-	%reloadTimer.start()
 	
+	if skill_active:
+		%fastreloadtimer.start()
+	else:
+		%reloadTimer.start()
+		
 
 # Makes instance of special projectile in the world scene
 func special():
@@ -120,11 +126,18 @@ func update_health():
 	healthbar.value = HP
 	
 func update_reloadprogress():
-	if reload_timer.get_time_left() > 0:
-		percentage_of_time_reload = (
-			(1-reload_timer.get_time_left()/ reload_timer.get_wait_time()) * 100)
+	if skill_active:
+		if fastreloadtimer.get_time_left() > 0:
+			percentage_of_time_reload = (
+			(1-fastreloadtimer.get_time_left()/ fastreloadtimer.get_wait_time()) * 100)
 		
 		reload_progress.value = percentage_of_time_reload
+	else:
+		if reload_timer.get_time_left() > 0:
+			percentage_of_time_reload = (
+				(1-reload_timer.get_time_left()/ reload_timer.get_wait_time()) * 100)
+			
+			reload_progress.value = percentage_of_time_reload
 
 func _on_reload_timer_timeout():
 	reload_progress.value = 100.0
@@ -138,3 +151,9 @@ func update_skillprogress():
 
 func _on_skill_timer_timeout():
 	skill_progress.value = 100.0
+	
+
+
+
+func _on_fastreloadtimer_timeout():
+	reload_progress.value = 100.0
