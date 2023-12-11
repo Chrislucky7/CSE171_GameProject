@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjxn3n1i3jyfm"]
+[gd_scene load_steps=13 format=3 uid="uid://bjxn3n1i3jyfm"]
 
 [ext_resource type="PackedScene" uid="uid://vqfx17hay0mi" path="res://Character/Player/player.tscn" id="1_i20v4"]
 [ext_resource type="Script" path="res://Character/Player/Classes/RangedPlayer/RangedPlayer.gd" id="2_2gf6j"]
 [ext_resource type="Shader" path="res://Character/character.gdshader" id="3_vf1lj"]
 [ext_resource type="Texture2D" uid="uid://bpabcgdcaklk0" path="res://Character/Player/Classes/RangedPlayer/Sprites/blastunder.png" id="4_unued"]
 [ext_resource type="Texture2D" uid="uid://ffypxeam8lbb" path="res://Character/Player/Classes/RangedPlayer/Sprites/blast.png" id="5_unrl3"]
+[ext_resource type="Texture2D" uid="uid://c4sneneyq00re" path="res://UI/grey_circle.png" id="6_cfxvy"]
+[ext_resource type="Texture2D" uid="uid://c7m8i1tbw20ec" path="res://UI/red_circle.png" id="7_rpw3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ifd8"]
 shader = ExtResource("3_vf1lj")
@@ -100,8 +102,6 @@ offset_top = -15.0
 offset_right = 1575.0
 offset_bottom = 405.0
 scale = Vector2(0.4, 0.4)
-step = 0.1
-value = 1.0
 texture_under = ExtResource("4_unued")
 texture_progress = ExtResource("5_unrl3")
 
@@ -110,38 +110,24 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
-[node name="MarginContainer" type="MarginContainer" parent="UI" index="2"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+[node name="SkillProgress" type="TextureProgressBar" parent="UI" index="2"]
+unique_name_in_owner = true
+offset_left = 38.0
+offset_top = 100.0
+offset_right = 438.0
+offset_bottom = 520.0
+scale = Vector2(0.2, 0.2)
+fill_mode = 4
+texture_under = ExtResource("6_cfxvy")
+texture_progress = ExtResource("7_rpw3d")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer" index="0"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer" index="0"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/MarginContainer" index="1"]
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer2" index="0"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer2/HBoxContainer" index="0"]
-layout_mode = 2
-text = "Skills"
+[node name="skillTimer" type="Timer" parent="UI/SkillProgress" index="0"]
+unique_name_in_owner = true
+wait_time = 20.0
+one_shot = true
 
 [connection signal="body_entered" from="CharacterBody2D/player_hitbox" to="CharacterBody2D" method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="CharacterBody2D/player_hitbox" to="CharacterBody2D" method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="CharacterBody2D/attack_cooldown" to="CharacterBody2D" method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="UI/ReloadProgress/reloadTimer" to="CharacterBody2D" method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="UI/SkillProgress/skillTimer" to="CharacterBody2D" method="_on_skill_timer_timeout"]

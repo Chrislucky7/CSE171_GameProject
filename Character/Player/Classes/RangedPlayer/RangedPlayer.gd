@@ -9,7 +9,12 @@ var enemy_attack_cooldown = true
 
 @onready var reload_progress = %ReloadProgress
 @onready var reload_timer = %reloadTimer
-@onready var percentage_of_time
+@onready var percentage_of_time_reload
+
+@onready var skill_progress = %SkillProgress
+@onready var skill_timer = %skillTimer
+@onready var percentage_of_time_skill
+
 
 # Normal attack
 var attack_speed = 2.0			# Attack speed in seconds
@@ -31,12 +36,15 @@ var SpecialProjectile = preload("res://Character/Player/Classes/RangedPlayer/spe
 
 func _ready():
 	aspd_hold = attack_speed
+	reload_progress.value = 100
+	skill_progress.value = 100
 
 func _physics_process(delta):
 	movement(delta)
 	enemy_attack()
 	update_health()
 	update_reloadprogress()
+	update_skillprogress()
 	
 	# Shoot projectile
 	attack_lock += delta
@@ -53,8 +61,10 @@ func _physics_process(delta):
 	skill_count += delta
 	if (Input.is_action_just_pressed("skill") && skill_count >= skill_cd) || skill_active:
 		skill_active = true
+		%skillTimer.start()
 		attack_speed = skill_aspd
 		duration_count += delta
+		
 		if duration_count >= skill_duration:
 			attack_speed = aspd_hold
 			skill_count = 0
@@ -71,6 +81,7 @@ func shoot():
 	projectile_instance.global_transform = $Marker2D.get_global_transform()
 	projectile_instance.get_node("Area2D").set_look_direction(look_direction)
 	%reloadTimer.start()
+	
 
 # Makes instance of special projectile in the world scene
 func special():
@@ -78,7 +89,9 @@ func special():
 	owner.add_child(special_instance)
 	special_instance.global_transform = $Marker2D.get_global_transform()
 	special_instance.get_node("Area2D").set_look_direction(look_direction)
+	
 	velocity.x = -knockback * look_direction
+	
 
 func player():
 	pass
@@ -108,10 +121,20 @@ func update_health():
 	
 func update_reloadprogress():
 	if reload_timer.get_time_left() > 0:
-		percentage_of_time = (
+		percentage_of_time_reload = (
 			(1-reload_timer.get_time_left()/ reload_timer.get_wait_time()) * 100)
 		
-		reload_progress.value = percentage_of_time
+		reload_progress.value = percentage_of_time_reload
 
 func _on_reload_timer_timeout():
 	reload_progress.value = 100.0
+	
+func update_skillprogress():
+	if skill_timer.get_time_left() > 0:
+		percentage_of_time_skill = (
+			(1-skill_timer.get_time_left()/ skill_timer.get_wait_time()) * 100)
+		
+		skill_progress.value = percentage_of_time_skill
+
+func _on_skill_timer_timeout():
+	skill_progress.value = 100.0
